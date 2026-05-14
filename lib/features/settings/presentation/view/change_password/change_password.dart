@@ -11,6 +11,8 @@ import '../widgets/min_widget/password_field.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/styles/app_colors.dart';
 
+import '../../../../../core/di/service_locator.dart';
+
 class ChangePasswordScreen extends StatelessWidget {
   const ChangePasswordScreen({super.key});
 
@@ -18,13 +20,7 @@ class ChangePasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return BlocProvider(
-      create: (_) {
-        final dataSource = SettingsRemoteDataSourceImpl();
-        final repository = SettingsRepositoryImpl(dataSource);
-        return ChangePasswordBloc(
-          changePasswordUseCase: ChangePasswordUseCase(repository),
-        );
-      },
+      create: (_) => sl<ChangePasswordBloc>(),
       child: BlocListener<ChangePasswordBloc, ChangePasswordState>(
         listener: (context, state) {
           if (state.isSuccess) {

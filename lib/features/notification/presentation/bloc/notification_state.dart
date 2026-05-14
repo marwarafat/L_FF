@@ -6,6 +6,7 @@ class NotificationState {
   final int selectedTab;
   final int unreadCount;
   final bool loading;
+  final String? errorMessage;
 
   NotificationState({
     required this.notifications,
@@ -13,6 +14,7 @@ class NotificationState {
     required this.selectedTab,
     required this.unreadCount,
     this.loading = false,
+    this.errorMessage,
   });
 
   NotificationState copyWith({
@@ -21,6 +23,7 @@ class NotificationState {
     int? selectedTab,
     int? unreadCount,
     bool? loading,
+    String? errorMessage,
   }) {
     return NotificationState(
       notifications: notifications ?? this.notifications,
@@ -29,6 +32,7 @@ class NotificationState {
       selectedTab: selectedTab ?? this.selectedTab,
       unreadCount: unreadCount ?? this.unreadCount,
       loading: loading ?? this.loading,
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 }

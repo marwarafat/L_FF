@@ -15,6 +15,8 @@ import '../../../data/repositories/settings_repository_impl.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/styles/app_colors.dart';
 
+import '../../../../../core/di/service_locator.dart';
+
 class ProfileInformationScreen extends StatelessWidget {
   const ProfileInformationScreen({super.key});
 
@@ -22,18 +24,7 @@ class ProfileInformationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return BlocProvider(
-      create: (context) {
-        final profileDataSource = ProfileRemoteDataSourceImpl();
-        final profileRepository = ProfileRepositoryImpl(profileDataSource);
-        
-        final settingsDataSource = SettingsRemoteDataSourceImpl();
-        final settingsRepository = SettingsRepositoryImpl(settingsDataSource);
-
-        return EditProfileBloc(
-          getUserProfileUseCase: GetUserProfileUseCase(profileRepository),
-          updateProfileUseCase: UpdateProfileUseCase(settingsRepository),
-        )..add(LoadProfile());
-      },
+      create: (context) => sl<EditProfileBloc>()..add(LoadProfile()),
       child: Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppBar(

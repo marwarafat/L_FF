@@ -1,6 +1,5 @@
-import '../../../../core/network/api_requests.dart';
+import '../../../../core/networking/api_consumer.dart';
 import '../../../../core/network/end_points.dart';
-import '../../../../core/storage/token_storage.dart';
 import '../models/chat_session_model.dart';
 import '../models/chat_message_model.dart';
 
@@ -12,78 +11,50 @@ abstract class ChatRemoteDataSource {
 }
 
 class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
-  final ApiRequests _apiRequests;
+  final ApiConsumer _apiConsumer;
 
-  ChatRemoteDataSourceImpl({ApiRequests? apiRequests})
-    : _apiRequests = apiRequests ?? ApiRequests();
-
-  Future<String?> _getToken() async {
-    return CacheHelper.getData(key: "token");
-  }
+  ChatRemoteDataSourceImpl({required ApiConsumer apiConsumer})
+    : _apiConsumer = apiConsumer;
 
   @override
   Future<List<ChatSessionModel>> getChatSessions() async {
-    final token = await _getToken();
-    if (token == null) throw Exception("No token found");
-
-    final response = await _apiRequests.getData(
-      path: EndPoints.chat + "/sessions",
-      token: token,
+    final response = await _apiConsumer.get(
+      EndPoints.chat + "/sessions",
+      headers: {'requiresAuth': true},
     );
 
-    if (response.statusCode == 200) {
-      final data = response.data['data'] as List;
-      return data.map((json) => ChatSessionModel.fromJson(json)).toList();
-    } else {
-      throw Exception(response.data['message'] ?? 'Failed to load sessions');
-    }
+    final data = response['data'] as List;
+    return data.map((json) => ChatSessionModel.fromJson(json)).toList();
   }
 
   @override
   Future<List<ChatMessageModel>> getChatMessages(int sessionId) async {
-    final token = await _getToken();
-    if (token == null) throw Exception("No token found");
-
-    final response = await _apiRequests.getData(
-      path: EndPoints.chat + "/sessions/$sessionId/messages",
-      token: token,
+    final response = await _apiConsumer.get(
+      EndPoints.chat + "/sessions/$sessionId/messages",
+      headers: {'requiresAuth': true},
     );
 
-    if (response.statusCode == 200) {
-      final data = response.data['data'] as List;
-      return data.map((json) => ChatMessageModel.fromJson(json)).toList();
-    } else {
-      throw Exception(response.data['message'] ?? 'Failed to load messages');
-    }
+    final data = response['data'] as List;
+    return data.map((json) => ChatMessageModel.fromJson(json)).toList();
   }
 
   @override
   Future<ChatMessageModel> sendMessage(int sessionId, String text) async {
-    final token = await _getToken();
-    if (token == null) throw Exception("No token found");
-
-    final response = await _apiRequests.postData(
-      path: EndPoints.chat + "/sessions/$sessionId/messages",
+    final response = await _apiConsumer.post(
+      EndPoints.chat + "/sessions/$sessionId/messages",
       data: {"text": text},
-      token: token,
+      headers: {'requiresAuth': true},
     );
 
-    if (response.statusCode == 200) {
-      return ChatMessageModel.fromJson(response.data['data']);
-    } else {
-      throw Exception(response.data['message'] ?? 'Failed to send message');
-    }
+    return ChatMessageModel.fromJson(response['data']);
   }
 
   @override
   Future<void> markMessageAsRead(int messageId) async {
-    final token = await _getToken();
-    if (token == null) return;
-
-    await _apiRequests.putData(
-      path: EndPoints.chat + "/messages/$messageId/read",
+    await _apiConsumer.put(
+      EndPoints.chat + "/messages/$messageId/read",
       data: null,
-      token: token,
+      headers: {'requiresAuth': true},
     );
   }
 }

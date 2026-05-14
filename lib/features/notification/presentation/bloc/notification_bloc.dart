@@ -40,7 +40,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
         );
       } catch (e) {
         print("LOAD ERROR: $e");
-        emit(state.copyWith(loading: false));
+        emit(state.copyWith(loading: false, errorMessage: e.toString()));
       }
     });
 

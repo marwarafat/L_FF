@@ -965,7 +965,7 @@ abstract class AppLocalizations {
   /// No description provided for @all.
   ///
   /// In en, this message translates to:
-  /// **'ALL'**
+  /// **'All'**
   String get all;
 
   /// No description provided for @unread.
@@ -1009,6 +1009,420 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'dd/mm/yyyy'**
   String get dateFormat;
+
+  /// No description provided for @onboarding_title_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Report Lost Items'**
+  String get onboarding_title_1;
+
+  /// No description provided for @onboarding_subtitle_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Quickly report lost items with photos \n and location details to increase your \n  chances of recovery'**
+  String get onboarding_subtitle_1;
+
+  /// No description provided for @onboarding_title_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Find Found Items'**
+  String get onboarding_title_2;
+
+  /// No description provided for @onboarding_subtitle_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse through found items in your\n area and help reunite people with \n their belongings'**
+  String get onboarding_subtitle_2;
+
+  /// No description provided for @onboarding_title_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Search & Map'**
+  String get onboarding_title_3;
+
+  /// No description provided for @onboarding_subtitle_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Use our intelligent search and \n interactive map to locate items based \n  on location and description'**
+  String get onboarding_subtitle_3;
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @get_started.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get get_started;
+
+  /// No description provided for @welcome_back.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back'**
+  String get welcome_back;
+
+  /// No description provided for @sign_in_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to your Waslt Kheir account'**
+  String get sign_in_subtitle;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @email_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get email_hint;
+
+  /// No description provided for @password_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get password_hint;
+
+  /// No description provided for @forgot_password_q.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgot_password_q;
+
+  /// No description provided for @sign_in.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get sign_in;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'Or'**
+  String get or;
+
+  /// No description provided for @continue_with_google.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continue_with_google;
+
+  /// No description provided for @dont_have_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have account? '**
+  String get dont_have_account;
+
+  /// No description provided for @sign_up.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get sign_up;
+
+  /// No description provided for @create_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get create_account;
+
+  /// No description provided for @sign_up_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up to start reporting and finding items'**
+  String get sign_up_subtitle;
+
+  /// No description provided for @first_name.
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get first_name;
+
+  /// No description provided for @last_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get last_name;
+
+  /// No description provided for @date_of_birth.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get date_of_birth;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @select_gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Gender'**
+  String get select_gender;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @phone_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phone_number;
+
+  /// No description provided for @phone_number_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number'**
+  String get phone_number_hint;
+
+  /// No description provided for @already_have_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have account? '**
+  String get already_have_account;
+
+  /// No description provided for @forgot_password_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password..?'**
+  String get forgot_password_title;
+
+  /// No description provided for @forgot_password_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address to reset your password.'**
+  String get forgot_password_subtitle;
+
+  /// No description provided for @email_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get email_address;
+
+  /// No description provided for @we_send_otp_to_email.
+  ///
+  /// In en, this message translates to:
+  /// **'we\'ll send a one-time code to this email'**
+  String get we_send_otp_to_email;
+
+  /// No description provided for @send_reset_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Reset Code'**
+  String get send_reset_code;
+
+  /// No description provided for @back_to_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Back To Login'**
+  String get back_to_login;
+
+  /// No description provided for @enter_verification_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter verification code'**
+  String get enter_verification_code;
+
+  /// No description provided for @otp_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We have sent a 6 digit code to your email.\nEnter the code we send you.'**
+  String get otp_subtitle;
+
+  /// No description provided for @resend_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend Code'**
+  String get resend_code;
+
+  /// No description provided for @verify_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify the Code'**
+  String get verify_code;
+
+  /// No description provided for @check_your_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Check Your Email'**
+  String get check_your_email;
+
+  /// No description provided for @reset_link_sent_email.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ve sent a password reset link to {email}.'**
+  String reset_link_sent_email(Object email);
+
+  /// No description provided for @reset_code_sent_email.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ve sent a password reset code to {email}.'**
+  String reset_code_sent_email(Object email);
+
+  /// No description provided for @reset_link_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset link sent successfully!'**
+  String get reset_link_success;
+
+  /// No description provided for @enter_otp.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter OTP'**
+  String get enter_otp;
+
+  /// No description provided for @connecting_lost_souls.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting Lost Souls'**
+  String get connecting_lost_souls;
+
+  /// No description provided for @search_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search items, locations...'**
+  String get search_hint;
+
+  /// No description provided for @lost.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost'**
+  String get lost;
+
+  /// No description provided for @found.
+  ///
+  /// In en, this message translates to:
+  /// **'Found'**
+  String get found;
+
+  /// No description provided for @no_posts_found.
+  ///
+  /// In en, this message translates to:
+  /// **'No posts found'**
+  String get no_posts_found;
+
+  /// No description provided for @ai_scanning.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Scanning'**
+  String get ai_scanning;
+
+  /// No description provided for @open_camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Camera'**
+  String get open_camera;
+
+  /// No description provided for @opening_camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening camera...'**
+  String get opening_camera;
+
+  /// No description provided for @images_count.
+  ///
+  /// In en, this message translates to:
+  /// **'Images ({count})'**
+  String images_count(Object count);
+
+  /// No description provided for @details.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get details;
+
+  /// No description provided for @location_not_specified.
+  ///
+  /// In en, this message translates to:
+  /// **'Location not specified'**
+  String get location_not_specified;
+
+  /// No description provided for @reported_on.
+  ///
+  /// In en, this message translates to:
+  /// **'Reported on {date}'**
+  String reported_on(Object date);
+
+  /// No description provided for @photos.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get photos;
+
+  /// No description provided for @location_on_map.
+  ///
+  /// In en, this message translates to:
+  /// **'Location on Map'**
+  String get location_on_map;
+
+  /// No description provided for @reported_by.
+  ///
+  /// In en, this message translates to:
+  /// **'Reported by'**
+  String get reported_by;
+
+  /// No description provided for @contact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get contact;
+
+  /// No description provided for @mark_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark Found'**
+  String get mark_found;
+
+  /// No description provided for @marked_found_btn.
+  ///
+  /// In en, this message translates to:
+  /// **'Found ✓'**
+  String get marked_found_btn;
+
+  /// No description provided for @marked_found_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Marked as found!'**
+  String get marked_found_success;
+
+  /// No description provided for @map_view.
+  ///
+  /// In en, this message translates to:
+  /// **'Map View'**
+  String get map_view;
+
+  /// No description provided for @connecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting...'**
+  String get connecting;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
 }
 
 class _AppLocalizationsDelegate

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
-import '../../../../core/network/api_requests.dart';
+import '../../../../core/networking/api_consumer.dart';
 import '../../../../core/network/end_points.dart';
-import '../../../../core/storage/token_storage.dart';
 import '../models/category_mapping_model.dart';
 
 abstract class ReportRemoteDataSource {
@@ -20,27 +19,19 @@ abstract class ReportRemoteDataSource {
 }
 
 class ReportRemoteDataSourceImpl implements ReportRemoteDataSource {
-  final ApiRequests _apiRequests;
+  final ApiConsumer _apiConsumer;
 
-  ReportRemoteDataSourceImpl({ApiRequests? apiRequests})
-    : _apiRequests = apiRequests ?? ApiRequests();
-
-  Future<String?> _getToken() async {
-    return CacheHelper.getData(key: "token");
-  }
+  ReportRemoteDataSourceImpl({required ApiConsumer apiConsumer})
+    : _apiConsumer = apiConsumer;
 
   @override
   Future<List<CategoryMappingModel>> getCategoryMapping() async {
     try {
-      final response = await _apiRequests.getData(
-        path: EndPoints.categoriesMapping,
-        token: '',
+      final response = await _apiConsumer.get(
+        EndPoints.categoriesMapping,
       );
-      if (response.statusCode == 200) {
-        final List<dynamic> data = response.data['data'] ?? [];
-        return data.map((e) => CategoryMappingModel.fromJson(e)).toList();
-      }
-      throw Exception(response.data['message'] ?? 'Failed to load categories');
+      final List<dynamic> data = response['data'] ?? [];
+      return data.map((e) => CategoryMappingModel.fromJson(e)).toList();
     } catch (e) {
       throw Exception('Failed to load categories: $e');
     }
@@ -58,9 +49,6 @@ class ReportRemoteDataSourceImpl implements ReportRemoteDataSource {
     DateTime? dateReported,
     List<String>? imagePaths,
   }) async {
-    final token = await _getToken();
-    if (token == null || token.isEmpty) throw Exception('Not authenticated');
-
     final Map<String, dynamic> fields = {
       'Title': title,
       'Description': description,
@@ -81,14 +69,10 @@ class ReportRemoteDataSourceImpl implements ReportRemoteDataSource {
 
     final formData = FormData.fromMap(fields);
 
-    final response = await _apiRequests.postMultipart(
-      path: EndPoints.createReport,
-      formData: formData,
-      token: token,
+    await _apiConsumer.post(
+      EndPoints.createReport,
+      data: formData,
+      headers: {'requiresAuth': true},
     );
-
-    if (response.statusCode != 200) {
-      throw Exception(response.data['message'] ?? 'Failed to submit report');
-    }
   }
 }

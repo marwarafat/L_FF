@@ -18,7 +18,7 @@ class ChatSessionModel extends ChatSessionEntity {
           ? ChatUserModel.fromJson(json['otherUser'])
           : null,
       lastMessageText: lastMessage != null ? lastMessage['text'] : null,
-      lastMessageTime: json['lastMessageTime'],
+      lastMessageTime: lastMessage != null ? lastMessage['sentAt'] : json['lastMessageTime'],
       hasUnreadMessages: json['hasUnreadMessages'] ?? false,
     );
   }

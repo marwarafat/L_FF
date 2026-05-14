@@ -14,6 +14,10 @@ import 'widgets/notification_tabs.dart';
 import 'widgets/notifications_list.dart';
 import '../../../../core/styles/app_colors.dart';
 
+import '../../../../core/routing/app_routes.dart';
+import '../../../auth/data/repo/auth_repo.dart';
+import '../../../../core/di/service_locator.dart';
+
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});
 
@@ -21,19 +25,9 @@ class NotificationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return BlocProvider(
-      create: (context) {
-        final dataSource = NotificationRemoteDataSourceImpl();
-        final repository = NotificationRepositoryImpl(dataSource);
-
-        return NotificationBloc(
-            getNotificationsUseCase: GetNotificationsUseCase(repository),
-            getUnreadCountUseCase: GetUnreadCountUseCase(repository),
-            markAllAsReadUseCase: MarkAllAsReadUseCase(repository),
-            markAsReadUseCase: MarkAsReadUseCase(repository),
-          )
+      create: (context) => sl<NotificationBloc>()
           ..add(LoadNotificationsEvent())
-          ..add(LoadUnreadCountEvent());
-      },
+          ..add(LoadUnreadCountEvent()),
       child: Scaffold(
         backgroundColor: const Color(0xFFF9F9F9),
         appBar: AppBar(
@@ -53,7 +47,11 @@ class NotificationsScreen extends StatelessWidget {
               color: Colors.black,
               size: 18,
             ),
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pushNamedAndRemoveUntil(
+              context,
+              AppRoutes.mainScreen,
+              (route) => false,
+            ),
           ),
           actions: [
             BlocBuilder<NotificationBloc, NotificationState>(
@@ -101,6 +99,44 @@ class NotificationsScreen extends StatelessWidget {
         ),
         body: BlocBuilder<NotificationBloc, NotificationState>(
           builder: (context, state) {
+            if (state.errorMessage != null) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.error_outline, color: Colors.red, size: 60),
+                      const SizedBox(height: 16),
+                      Text(
+                        state.errorMessage!,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                      const SizedBox(height: 24),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          // Force logout
+                          sl<AuthRepo>().logout();
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            AppRoutes.signInScreen,
+                            (route) => false,
+                          );
+                        },
+                        icon: const Icon(Icons.logout),
+                        label: const Text("Logout & Login Again"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+
             return Column(
               children: [
                 const SizedBox(height: 10),

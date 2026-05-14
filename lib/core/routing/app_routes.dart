@@ -1,4 +1,5 @@
 class AppRoutes {
+  // ─── Your existing routes ─────────────────────────────
   static const String login = '/login';
   static const String settings = '/settings';
   static const String profile = '/profile';
@@ -12,8 +13,18 @@ class AppRoutes {
   static const String reportAbuse = '/reportAbuse';
   static const String privacyPolicy = '/privacyPolicy';
   static const String termsConditions = '/termsConditions';
-
-  // Aliases for compatibility with provided code
-  static const String signInScreen = login;
   static const String changePasswordScreen = changePassword;
+
+  // ─── Alaa's routes ────────────────────────────────────
+  static const String splashScreen = '/splash_screen';
+  static const String onboardingScreen = '/onboarding_screen';
+  static const String signInScreen = '/sign_in_screen';
+  static const String signUpScreen = '/sign_up_screen';
+  static const String homeScreen = '/home_screen';
+  static const String mainScreen = '/main_screen';
+  static const String forgetPasswordScreen = '/forget_password_screen';
+  static const String resetPasswordScreen = '/reset_password_screen';
+  static const String OtpScreen = '/otp_screen';
+  static const String aiScanScreen = '/ai_scan_screen';
+  static const String postDetails = '/post_details';
 }

@@ -484,4 +484,225 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dateFormat => 'يوم/شهر/سنة';
+
+  @override
+  String get onboarding_title_1 => 'الإبلاغ عن المفقودات';
+
+  @override
+  String get onboarding_subtitle_1 =>
+      'بلغ عن مفقوداتك بسرعة مع الصور \n وتفاصيل الموقع لزيادة \n فرص العثور عليها';
+
+  @override
+  String get onboarding_title_2 => 'البحث عن الموجودات';
+
+  @override
+  String get onboarding_subtitle_2 =>
+      'تصفح الأشياء الموجودة في \n منطقتك وساعد في إعادة الممتلكات \n لأصحابها';
+
+  @override
+  String get onboarding_title_3 => 'بحث ذكي وخريطة';
+
+  @override
+  String get onboarding_subtitle_3 =>
+      'استخدم بحثنا الذكي والخريطة \n التفاعلية لتحديد مكان المفقودات بناءً \n على الموقع والوصف';
+
+  @override
+  String get skip => 'تخطي';
+
+  @override
+  String get next => 'التالي';
+
+  @override
+  String get get_started => 'ابدأ الآن';
+
+  @override
+  String get welcome_back => 'مرحباً بعودتك';
+
+  @override
+  String get sign_in_subtitle => 'سجل الدخول إلى حسابك في واصت خير';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
+  String get email_hint => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get password_hint => 'أدخل كلمة المرور';
+
+  @override
+  String get forgot_password_q => 'نسيت كلمة المرور؟';
+
+  @override
+  String get sign_in => 'تسجيل الدخول';
+
+  @override
+  String get or => 'أو';
+
+  @override
+  String get continue_with_google => 'المتابعة باستخدام جوجل';
+
+  @override
+  String get dont_have_account => 'ليس لديك حساب؟ ';
+
+  @override
+  String get sign_up => 'إنشاء حساب';
+
+  @override
+  String get create_account => 'إنشاء حساب جديد';
+
+  @override
+  String get sign_up_subtitle =>
+      'سجل الآن للبدء في الإبلاغ والعثور على المفقودات';
+
+  @override
+  String get first_name => 'الاسم الأول';
+
+  @override
+  String get last_name => 'اسم العائلة';
+
+  @override
+  String get date_of_birth => 'تاريخ الميلاد';
+
+  @override
+  String get gender => 'الجنس';
+
+  @override
+  String get select_gender => 'اختر الجنس';
+
+  @override
+  String get male => 'ذكر';
+
+  @override
+  String get female => 'أنثى';
+
+  @override
+  String get phone_number => 'رقم الهاتف';
+
+  @override
+  String get phone_number_hint => 'أدخل رقم هاتفك';
+
+  @override
+  String get already_have_account => 'لديك حساب بالفعل؟ ';
+
+  @override
+  String get forgot_password_title => 'نسيت كلمة المرور..؟';
+
+  @override
+  String get forgot_password_subtitle =>
+      'أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور.';
+
+  @override
+  String get email_address => 'عنوان البريد الإلكتروني';
+
+  @override
+  String get we_send_otp_to_email => 'سنرسل رمز التحقق إلى هذا البريد';
+
+  @override
+  String get send_reset_code => 'إرسال رمز التعيين';
+
+  @override
+  String get back_to_login => 'العودة لتسجيل الدخول';
+
+  @override
+  String get enter_verification_code => 'أدخل رمز التحقق';
+
+  @override
+  String get otp_subtitle =>
+      'لقد أرسلنا رمزاً مكوناً من 6 أرقام إلى بريدك.\nأدخل الرمز الذي أرسلناه لك.';
+
+  @override
+  String get resend_code => 'إعادة إرسال الرمز';
+
+  @override
+  String get verify_code => 'التحقق من الرمز';
+
+  @override
+  String get check_your_email => 'تحقق من بريدك';
+
+  @override
+  String reset_link_sent_email(Object email) {
+    return 'لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى $email.';
+  }
+
+  @override
+  String reset_code_sent_email(Object email) {
+    return 'لقد أرسلنا رمز إعادة تعيين كلمة المرور إلى $email.';
+  }
+
+  @override
+  String get reset_link_success => 'تم إرسال رابط إعادة التعيين بنجاح!';
+
+  @override
+  String get enter_otp => 'أدخل رمز التحقق';
+
+  @override
+  String get connecting_lost_souls => 'نصل المفقودات بأصحابها';
+
+  @override
+  String get search_hint => 'ابحث عن مفقودات، مواقع...';
+
+  @override
+  String get lost => 'مفقود';
+
+  @override
+  String get found => 'موجود';
+
+  @override
+  String get no_posts_found => 'لا توجد منشورات';
+
+  @override
+  String get ai_scanning => 'فحص بالذكاء الاصطناعي';
+
+  @override
+  String get open_camera => 'فتح الكاميرا';
+
+  @override
+  String get opening_camera => 'جاري فتح الكاميرا...';
+
+  @override
+  String images_count(Object count) {
+    return 'الصور ($count)';
+  }
+
+  @override
+  String get details => 'التفاصيل';
+
+  @override
+  String get location_not_specified => 'الموقع غير محدد';
+
+  @override
+  String reported_on(Object date) {
+    return 'تم الإبلاغ في $date';
+  }
+
+  @override
+  String get photos => 'الصور';
+
+  @override
+  String get location_on_map => 'الموقع على الخريطة';
+
+  @override
+  String get reported_by => 'تم الإبلاغ بواسطة';
+
+  @override
+  String get contact => 'تواصل';
+
+  @override
+  String get mark_found => 'تحديد كموجود';
+
+  @override
+  String get marked_found_btn => 'تم العثور ✓';
+
+  @override
+  String get marked_found_success => 'تم التحديد كموجود بنجاح!';
+
+  @override
+  String get map_view => 'عرض الخريطة';
+
+  @override
+  String get connecting => 'جاري الاتصال...';
+
+  @override
+  String get retry => 'إعادة المحاولة';
 }

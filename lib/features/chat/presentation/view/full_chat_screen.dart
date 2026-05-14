@@ -17,6 +17,8 @@ import 'widgets/chat_bubble.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/foundation.dart' as foundation;
 
+import '../../../../core/di/service_locator.dart';
+
 class FullChatScreen extends StatefulWidget {
   final int sessionId;
   final String otherUserName;
@@ -68,21 +70,7 @@ class _FullChatScreenState extends State<FullChatScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return BlocProvider(
-      create: (_) {
-        final chatDataSource = ChatRemoteDataSourceImpl();
-        final chatRepository = ChatRepositoryImpl(chatDataSource);
-
-        final profileDataSource = ProfileRemoteDataSourceImpl();
-        final profileRepository = ProfileRepositoryImpl(profileDataSource);
-
-        return ChatBloc(
-          getChatSessionsUseCase: GetChatSessionsUseCase(chatRepository),
-          getChatMessagesUseCase: GetChatMessagesUseCase(chatRepository),
-          sendMessageUseCase: SendMessageUseCase(chatRepository),
-          markMessageAsReadUseCase: MarkMessageAsReadUseCase(chatRepository),
-          getUserProfileUseCase: GetUserProfileUseCase(profileRepository),
-        )..add(LoadChatMessagesEvent(widget.sessionId));
-      },
+      create: (_) => sl<ChatBloc>()..add(LoadChatMessagesEvent(widget.sessionId)),
       child: BlocBuilder<ChatBloc, ChatState>(
         buildWhen: (previous, current) =>
             current is ChatMessagesLoaded ||

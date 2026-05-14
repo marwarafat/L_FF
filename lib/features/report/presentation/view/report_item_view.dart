@@ -6,12 +6,9 @@ import '../../../../l10n/app_localizations.dart';
 import '../bloc/report_bloc.dart';
 import '../bloc/report_event.dart';
 import '../bloc/report_state.dart';
-import '../../data/datasources/report_remote_data_source.dart';
-import '../../data/repositories/report_repository_impl.dart';
-import '../../domain/usecases/get_categories_usecase.dart';
-import '../../domain/usecases/create_report_usecase.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/styles/app_colors.dart';
+import '../../../../core/di/service_locator.dart';
 
 class ReportItemView extends StatelessWidget {
   const ReportItemView({super.key});
@@ -19,14 +16,7 @@ class ReportItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) {
-        final dataSource = ReportRemoteDataSourceImpl();
-        final repository = ReportRepositoryImpl(dataSource);
-        return ReportBloc(
-          getCategoriesUseCase: GetCategoriesUseCase(repository),
-          createReportUseCase: CreateReportUseCase(repository),
-        )..add(LoadCategories());
-      },
+      create: (context) => sl<ReportBloc>()..add(LoadCategories()),
       child: const _ReportItemBody(),
     );
   }
@@ -105,7 +95,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
               style: const TextStyle(
                 fontFamily: 'AbhayaLibre',
                 fontWeight: FontWeight.w800,
-                fontSize: 20,
+                fontSize: 18,
                 color: AppColors.black,
               ),
             ),
@@ -159,7 +149,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
                   style: const TextStyle(
                     fontFamily: 'AbhayaLibre',
                     fontWeight: FontWeight.w400,
-                    fontSize: 25,
+                    fontSize: 20,
                   ),
                 ),
               ),
@@ -184,7 +174,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
                   style: const TextStyle(
                     fontFamily: 'AbhayaLibre',
                     fontWeight: FontWeight.w400,
-                    fontSize: 25,
+                    fontSize: 20,
                   ),
                 ),
               ),
@@ -217,7 +207,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
                   style: const TextStyle(
                     fontFamily: 'AbhayaLibre',
                     fontWeight: FontWeight.w400,
-                    fontSize: 25,
+                    fontSize: 20,
                   ),
                 ),
               ),
@@ -242,7 +232,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
                   style: const TextStyle(
                     fontFamily: 'AbhayaLibre',
                     fontWeight: FontWeight.w400,
-                    fontSize: 25,
+                    fontSize: 20,
                   ),
                 ),
               ),
@@ -280,7 +270,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
                           style: const TextStyle(
                             fontFamily: 'AbhayaLibre',
                             fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -319,7 +309,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
           style: const TextStyle(
             fontFamily: 'AbhayaLibre',
             fontWeight: FontWeight.w500,
-            fontSize: 16,
+            fontSize: 14,
             color: AppColors.textSecondary,
           ),
         ),
@@ -422,7 +412,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
                     fontFamily: 'AbhayaLibre',
                     color: AppColors.textSecondary,
                     fontWeight: FontWeight.w500,
-                    fontSize: 20,
+                    fontSize: 17,
                   ),
                 ),
               ],
@@ -472,7 +462,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
                         l10n.clickToUploadPhotos,
                         style: const TextStyle(
                           fontFamily: 'AbhayaLibre',
-                          fontSize: 20,
+                          fontSize: 17,
                           fontWeight: FontWeight.w500,
                           color: AppColors.textSecondary,
                         ),
@@ -482,7 +472,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
                         l10n.photoFormatWarning,
                         style: const TextStyle(
                           fontFamily: 'AbhayaLibre',
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: AppColors.textSecondary,
                         ),
@@ -504,7 +494,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
           isLoading: state.isSubmitting,
           backgroundColor: AppColors.primaryDark,
           height: 50,
-          fontSize: 22,
+          fontSize: 18,
         ),
         const SizedBox(height: 20),
       ],
@@ -517,7 +507,7 @@ class _ReportItemBodyState extends State<_ReportItemBody> {
       style: const TextStyle(
         fontFamily: 'AbhayaLibre',
         fontWeight: FontWeight.w400,
-        fontSize: 22,
+        fontSize: 18,
         color: AppColors.black,
       ),
     );

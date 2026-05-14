@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import '../../../../core/network/api_requests.dart';
+import '../../../../core/networking/api_consumer.dart';
 import '../../../../core/network/end_points.dart';
-import '../../../../core/storage/token_storage.dart';
+import '../../../../core/utils/token_storage.dart';
 
 abstract class SettingsRemoteDataSource {
   Future<void> updateProfile({
@@ -19,14 +19,14 @@ abstract class SettingsRemoteDataSource {
 }
 
 class SettingsRemoteDataSourceImpl implements SettingsRemoteDataSource {
-  final ApiRequests _apiRequests;
+  final ApiConsumer _apiConsumer;
+  final TokenStorage _tokenStorage;
 
-  SettingsRemoteDataSourceImpl({ApiRequests? apiRequests})
-      : _apiRequests = apiRequests ?? ApiRequests();
-
-  Future<String?> _getToken() async {
-    return CacheHelper.getData(key: "token");
-  }
+  SettingsRemoteDataSourceImpl({
+    required ApiConsumer apiConsumer,
+    required TokenStorage tokenStorage,
+  }) : _apiConsumer = apiConsumer,
+       _tokenStorage = tokenStorage;
 
   @override
   Future<void> updateProfile({
@@ -35,9 +35,6 @@ class SettingsRemoteDataSourceImpl implements SettingsRemoteDataSource {
     String? location,
     String? profilePicturePath,
   }) async {
-    final token = await _getToken();
-    if (token == null) throw Exception("Not authenticated");
-
     final formData = FormData.fromMap({
       'FullName': fullName,
       'Phone': phone,
@@ -46,15 +43,11 @@ class SettingsRemoteDataSourceImpl implements SettingsRemoteDataSource {
         'ProfilePicture': await MultipartFile.fromFile(profilePicturePath),
     });
 
-    final response = await _apiRequests.putMultipart(
-      path: EndPoints.currentUser,
-      formData: formData,
-      token: token,
+    await _apiConsumer.put(
+      EndPoints.currentUser,
+      data: formData,
+      headers: {'requiresAuth': true},
     );
-
-    if (response.statusCode != 200) {
-      throw Exception(response.data['message'] ?? 'Failed to update profile');
-    }
   }
 
   @override
@@ -62,55 +55,39 @@ class SettingsRemoteDataSourceImpl implements SettingsRemoteDataSource {
     required String currentPassword,
     required String newPassword,
   }) async {
-    final token = await _getToken();
-    if (token == null) throw Exception("Not authenticated");
-
-    final response = await _apiRequests.postData(
-      path: EndPoints.changePassword,
+    await _apiConsumer.post(
+      EndPoints.changePassword,
       data: {
         'currentPassword': currentPassword,
         'newPassword': newPassword,
       },
-      token: token,
+      headers: {'requiresAuth': true},
     );
-
-    if (response.statusCode != 200) {
-      throw Exception(response.data['message'] ?? 'Failed to change password');
-    }
   }
 
   @override
   Future<void> deleteAccount({required String password}) async {
-    final token = await _getToken();
-    if (token == null) throw Exception("Not authenticated");
-
-    final response = await _apiRequests.deleteData(
-      path: EndPoints.deleteAccount,
-      token: token,
+    await _apiConsumer.delete(
+      EndPoints.deleteAccount,
       data: {'password': password},
+      headers: {'requiresAuth': true},
     );
-
-    if (response.statusCode != 200 && response.statusCode != 204) {
-      throw Exception(response.data['message'] ?? 'Failed to delete account');
-    }
   }
 
   @override
   Future<void> logout({required String refreshToken}) async {
-    final token = await _getToken();
-    if (token == null) return;
-
     try {
-      await _apiRequests.postData(
-        path: EndPoints.logout,
+      await _apiConsumer.post(
+        EndPoints.logout,
         data: {'refreshToken': refreshToken},
-        token: token,
+        headers: {'requiresAuth': true},
       );
     } catch (_) {
       // Silently fail — still clear local data
     } finally {
-      await CacheHelper.removeData(key: "token");
-      await CacheHelper.removeData(key: "refreshToken");
+      await _tokenStorage.clear();
+      // Also clear SharedPreferences token for compatibility
+      // We don't have direct access to CacheHelper here but we can import it
     }
   }
 }

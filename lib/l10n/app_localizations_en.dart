@@ -463,7 +463,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get markAllAsRead => 'Mark All as Read';
 
   @override
-  String get all => 'ALL';
+  String get all => 'All';
 
   @override
   String get unread => 'Unread';
@@ -486,4 +486,225 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dateFormat => 'dd/mm/yyyy';
+
+  @override
+  String get onboarding_title_1 => 'Report Lost Items';
+
+  @override
+  String get onboarding_subtitle_1 =>
+      'Quickly report lost items with photos \n and location details to increase your \n  chances of recovery';
+
+  @override
+  String get onboarding_title_2 => 'Find Found Items';
+
+  @override
+  String get onboarding_subtitle_2 =>
+      'Browse through found items in your\n area and help reunite people with \n their belongings';
+
+  @override
+  String get onboarding_title_3 => 'Smart Search & Map';
+
+  @override
+  String get onboarding_subtitle_3 =>
+      'Use our intelligent search and \n interactive map to locate items based \n  on location and description';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get get_started => 'Get Started';
+
+  @override
+  String get welcome_back => 'Welcome Back';
+
+  @override
+  String get sign_in_subtitle => 'Sign in to your Waslt Kheir account';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get email_hint => 'Enter your email';
+
+  @override
+  String get password_hint => 'Enter your password';
+
+  @override
+  String get forgot_password_q => 'Forgot Password?';
+
+  @override
+  String get sign_in => 'Sign In';
+
+  @override
+  String get or => 'Or';
+
+  @override
+  String get continue_with_google => 'Continue with Google';
+
+  @override
+  String get dont_have_account => 'Don\'t have account? ';
+
+  @override
+  String get sign_up => 'Sign Up';
+
+  @override
+  String get create_account => 'Create Account';
+
+  @override
+  String get sign_up_subtitle => 'Sign up to start reporting and finding items';
+
+  @override
+  String get first_name => 'First Name';
+
+  @override
+  String get last_name => 'Last Name';
+
+  @override
+  String get date_of_birth => 'Date of birth';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get select_gender => 'Select Gender';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get phone_number => 'Phone Number';
+
+  @override
+  String get phone_number_hint => 'Enter your phone number';
+
+  @override
+  String get already_have_account => 'Already have account? ';
+
+  @override
+  String get forgot_password_title => 'Forgot password..?';
+
+  @override
+  String get forgot_password_subtitle =>
+      'Enter your email address to reset your password.';
+
+  @override
+  String get email_address => 'Email Address';
+
+  @override
+  String get we_send_otp_to_email =>
+      'we\'ll send a one-time code to this email';
+
+  @override
+  String get send_reset_code => 'Send Reset Code';
+
+  @override
+  String get back_to_login => 'Back To Login';
+
+  @override
+  String get enter_verification_code => 'Enter verification code';
+
+  @override
+  String get otp_subtitle =>
+      'We have sent a 6 digit code to your email.\nEnter the code we send you.';
+
+  @override
+  String get resend_code => 'Resend Code';
+
+  @override
+  String get verify_code => 'Verify the Code';
+
+  @override
+  String get check_your_email => 'Check Your Email';
+
+  @override
+  String reset_link_sent_email(Object email) {
+    return 'We\'ve sent a password reset link to $email.';
+  }
+
+  @override
+  String reset_code_sent_email(Object email) {
+    return 'We\'ve sent a password reset code to $email.';
+  }
+
+  @override
+  String get reset_link_success => 'Reset link sent successfully!';
+
+  @override
+  String get enter_otp => 'Enter OTP';
+
+  @override
+  String get connecting_lost_souls => 'Connecting Lost Souls';
+
+  @override
+  String get search_hint => 'Search items, locations...';
+
+  @override
+  String get lost => 'Lost';
+
+  @override
+  String get found => 'Found';
+
+  @override
+  String get no_posts_found => 'No posts found';
+
+  @override
+  String get ai_scanning => 'AI Scanning';
+
+  @override
+  String get open_camera => 'Open Camera';
+
+  @override
+  String get opening_camera => 'Opening camera...';
+
+  @override
+  String images_count(Object count) {
+    return 'Images ($count)';
+  }
+
+  @override
+  String get details => 'Details';
+
+  @override
+  String get location_not_specified => 'Location not specified';
+
+  @override
+  String reported_on(Object date) {
+    return 'Reported on $date';
+  }
+
+  @override
+  String get photos => 'Photos';
+
+  @override
+  String get location_on_map => 'Location on Map';
+
+  @override
+  String get reported_by => 'Reported by';
+
+  @override
+  String get contact => 'Contact';
+
+  @override
+  String get mark_found => 'Mark Found';
+
+  @override
+  String get marked_found_btn => 'Found ✓';
+
+  @override
+  String get marked_found_success => 'Marked as found!';
+
+  @override
+  String get map_view => 'Map View';
+
+  @override
+  String get connecting => 'Connecting...';
+
+  @override
+  String get retry => 'Retry';
 }

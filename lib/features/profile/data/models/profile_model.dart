@@ -1,3 +1,4 @@
+import '../../../../core/networking/api_constants.dart';
 import '../../domain/entities/profile_entity.dart';
 
 class ProfileModel extends ProfileEntity {
@@ -29,7 +30,10 @@ class ProfileModel extends ProfileEntity {
       phone: json['phone'],
       location: json['location'],
       memberSince: formattedDate,
-      image: json['profilePictureUrl'],
+      image: json['profilePictureUrl'] != null &&
+              !json['profilePictureUrl'].toString().startsWith('http')
+          ? '${ApiConstants.baseDomain}${json['profilePictureUrl']}'
+          : json['profilePictureUrl'],
       gender: json['gender'],
       dateOfBirth: json['dateOfBirth'],
       isVerified: json['isVerified'] ?? false,

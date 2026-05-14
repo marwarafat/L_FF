@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'api_constants.dart';
+import '../networking/api_constants.dart';
 
 class ApiRequests {
   final Dio _dio = Dio(
@@ -15,7 +15,7 @@ class ApiRequests {
     required String token,
   }) async {
     print("DEBUG: Sending GET to -> ${ApiConstants.baseUrl}$path");
-    print("DEBUG: Token -> ${token.isNotEmpty ? "EXISTS" : "EMPTY"}");
+    print("DEBUG: Token -> $token");
     try {
       return await _dio.get(
         path,

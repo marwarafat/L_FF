@@ -1,3 +1,4 @@
+import '../../../../core/networking/api_constants.dart';
 import '../../domain/entities/chat_user_entity.dart';
 
 class ChatUserModel extends ChatUserEntity {
@@ -8,10 +9,14 @@ class ChatUserModel extends ChatUserEntity {
   });
 
   factory ChatUserModel.fromJson(Map<String, dynamic> json) {
+    String? imageUrl = json['profilePictureUrl'];
+    if (imageUrl != null && !imageUrl.startsWith('http')) {
+      imageUrl = '${ApiConstants.baseDomain}$imageUrl';
+    }
     return ChatUserModel(
       id: json['id'] ?? 0,
       fullName: json['fullName'] ?? '',
-      profilePictureUrl: json['profilePictureUrl'],
+      profilePictureUrl: imageUrl,
     );
   }
 

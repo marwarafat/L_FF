@@ -1,6 +1,5 @@
-import '../../../../core/network/api_requests.dart';
+import '../../../../core/networking/api_consumer.dart';
 import '../../../../core/network/end_points.dart';
-import '../../../../core/storage/token_storage.dart';
 import '../models/notification_model.dart';
 
 abstract class NotificationRemoteDataSource {
@@ -11,63 +10,47 @@ abstract class NotificationRemoteDataSource {
 }
 
 class NotificationRemoteDataSourceImpl implements NotificationRemoteDataSource {
-  final ApiRequests _apiRequests;
+  final ApiConsumer _apiConsumer;
 
-  NotificationRemoteDataSourceImpl({ApiRequests? apiRequests})
-    : _apiRequests = apiRequests ?? ApiRequests();
-
-  Future<String?> _getToken() async {
-    return CacheHelper.getData(key: "token");
-  }
+  NotificationRemoteDataSourceImpl({required ApiConsumer apiConsumer})
+    : _apiConsumer = apiConsumer;
 
   @override
   Future<List<NotificationModel>> getNotifications() async {
-    final token = await _getToken();
-    if (token == null) throw Exception("Token not found");
-
-    final response = await _apiRequests.getData(
-      path: EndPoints.notifications,
-      token: token,
+    final response = await _apiConsumer.get(
+      EndPoints.notifications,
+      headers: {'requiresAuth': true},
     );
 
-    final List data = response.data['data']['notifications'];
+    final List data = response['data']['notifications'];
     return data.map((e) => NotificationModel.fromJson(e)).toList();
   }
 
   @override
   Future<int> getUnreadCount() async {
-    final token = await _getToken();
-    if (token == null) throw Exception("Token not found");
-
-    final response = await _apiRequests.getData(
-      path: EndPoints.unreadCount,
-      token: token,
+    final response = await _apiConsumer.get(
+      EndPoints.unreadCount,
+      headers: {'requiresAuth': true},
     );
 
-    return response.data['data']['unreadCount'] ?? 0;
+    return response['data']['unreadCount'] ?? 0;
   }
 
   @override
   Future<void> markAllAsRead() async {
-    final token = await _getToken();
-    if (token == null) throw Exception("Token not found");
-
-    await _apiRequests.postData(
-      path: EndPoints.markAllRead,
+    await _apiConsumer.post(
+      EndPoints.markAllRead,
       data: {},
-      token: token,
+      headers: {'requiresAuth': true},
     );
   }
 
   @override
   Future<void> markAsRead(int id) async {
-    final token = await _getToken();
-    if (token == null) throw Exception("Token not found");
-
-    await _apiRequests.postData(
-      path: "${EndPoints.markRead}/$id/read",
+    await _apiConsumer.post(
+      "${EndPoints.markRead}/$id/read",
       data: {},
-      token: token,
+      headers: {'requiresAuth': true},
     );
   }
 }

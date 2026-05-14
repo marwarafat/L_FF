@@ -17,22 +17,15 @@ import '../../data/repositories/settings_repository_impl.dart';
 import 'widget/sections/language_section.dart';
 import '../../../../core/styles/app_colors.dart';
 
+import '../../../../core/di/service_locator.dart';
+
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) {
-        final dataSource = SettingsRemoteDataSourceImpl();
-        final repository = SettingsRepositoryImpl(dataSource);
-        return SettingsBloc(
-          updateProfileUseCase: UpdateProfileUseCase(repository),
-          changePasswordUseCase: ChangePasswordUseCase(repository),
-          deleteAccountUseCase: DeleteAccountUseCase(repository),
-          logoutUseCase: LogoutUseCase(repository),
-        );
-      },
+      create: (_) => sl<SettingsBloc>(),
       child: Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppBar(
